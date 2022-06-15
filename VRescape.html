@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title> Web VR </title>
+		<script src="aframe.min.js"></script>
+		<script>
+			AFRAME.registerComponent('raycaster-autorefresh', {
+				init: function () {
+					var el = this.el;
+					this.el.addEventListener('model-loaded', function () {
+						var cursorEl = el.querySelector('[raycaster]');
+						cursorEl.components.raycaster.refreshObjects();
+					});
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<a-scene raycaster-autorefresh>
+			<a-light type="directional" color="#fff" intensity="0.8" position="2 5 0" rotation="0 0 0"></a-light>
+
+			<a-sky color="rgb(100,100,255)"></a-sky>
+
+			<a-camera position="0 0 0">
+
+			</a-camera>
+		</a-scene>
+	</body>
+</html>
